@@ -16,7 +16,9 @@
 package uk.co.certait.htmlexporter.css;
 
 public enum CssIntegerProperty {
-	FONT_SIZE("font-size"), WIDTH("width"), BORDER_WIDTH("border-width");
+	FONT_SIZE("font-size"), WIDTH("width"), BORDER_WIDTH("border-width")
+	//, BORDER_LEFT_WIDTH("border-left-width"), BORDER_RIGHT_WIDTH("border-right-width"), BORDER_TOP_WIDTH("border-top-width"), BORDER_BOTTOM_WIDTH("border-bottom-width")
+	;
 
 	private String property;
 

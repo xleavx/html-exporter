@@ -79,7 +79,20 @@ public class Style {
 		return colorProperties;
 	}
 
-	public int getProperty(CssIntegerProperty property) {
+
+  public boolean isPropertySet(CssIntegerProperty property) {
+    return integerProperties.containsKey(property);
+  }
+
+  public boolean isPropertySet(CssStringProperty property) {
+	  return stringProperties.containsKey(property);
+  }
+
+  public boolean isPropertySet(CssColorProperty property) {
+    return colorProperties.containsKey(property);
+  }
+
+  public int getProperty(CssIntegerProperty property) {
 		return integerProperties.get(property) != null ? integerProperties.get(property) : 0;
 	}
 
@@ -153,7 +166,7 @@ public class Style {
 	}
 
 	public boolean isBorderColorSet() {
-		return colorProperties.containsKey(CssColorProperty.BORDER_COLOR);
+    return colorProperties.containsKey(CssColorProperty.BORDER_COLOR);
 	}
 
 	public boolean isColorSet() {
