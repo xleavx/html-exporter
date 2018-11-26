@@ -22,6 +22,7 @@ import java.util.Map;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
@@ -65,8 +66,8 @@ public class ExcelStyleGenerator {
 
 	protected void applyBackground(Style style, XSSFCellStyle cellStyle) {
 		if (style.isBackgroundSet()) {
-			cellStyle.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
-			cellStyle.setFillForegroundColor(new XSSFColor(style.getProperty(CssColorProperty.BACKGROUND)));
+			cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+			cellStyle.setFillForegroundColor(new XSSFColor(style.getProperty(CssColorProperty.BACKGROUND_COLOR)));
 		}
 	}
 
@@ -78,19 +79,19 @@ public class ExcelStyleGenerator {
 					.getProperty(CssColorProperty.BORDER_COLOR) : Color.BLACK;
 
 			cellStyle.setBorderBottom(BorderStyle.THIN);
-			cellStyle.setBorderBottom(width);
+			//TODO replace deprecated cellStyle.setBorderBottom(width);
 			cellStyle.setBottomBorderColor(new XSSFColor(color));
 
 			cellStyle.setBorderTop(BorderStyle.THIN);
-			cellStyle.setBorderTop(width);
+			//TODO replace deprecated cellStyle.setBorderTop(width);
 			cellStyle.setTopBorderColor(new XSSFColor(color));
 
 			cellStyle.setBorderLeft(BorderStyle.THIN);
-			cellStyle.setBorderLeft(width);
+			//TODO replace deprecated cellStyle.setBorderLeft(width);
 			cellStyle.setLeftBorderColor(new XSSFColor(color));
 
 			cellStyle.setBorderRight(BorderStyle.THIN);
-			cellStyle.setBorderRight(width);
+			//TODO replace deprecated cellStyle.setBorderRight(width);
 			cellStyle.setRightBorderColor(new XSSFColor(color));
 		}
 	}
@@ -147,7 +148,8 @@ public class ExcelStyleGenerator {
 		}
 
 		if (style.isFontBold()) {
-			font.setBoldweight(Font.BOLDWEIGHT_BOLD);
+			//font.setBoldweight(Font.BOLDWEIGHT_BOLD);
+			font.setBold(style.isFontBold());
 		}
 
 		font.setItalic(style.isFontItalic());

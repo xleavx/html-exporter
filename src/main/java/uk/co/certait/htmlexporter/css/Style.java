@@ -108,6 +108,11 @@ public class Style {
 	}
 
 	public boolean isFontBold() {
+		String fontWeightString = stringProperties.get(CssStringProperty.FONT_WEIGHT);
+	  if (StringUtils.isNumeric(fontWeightString)) {
+	    int fontWeight = Integer.valueOf(fontWeightString);
+	    return fontWeight >= 700;
+    }
 		return BOLD_FONT_STYLE.equals(stringProperties.get(CssStringProperty.FONT_WEIGHT));
 	}
 
@@ -144,7 +149,7 @@ public class Style {
 	}
 
 	public boolean isBackgroundSet() {
-		return colorProperties.containsKey(CssColorProperty.BACKGROUND);
+		return colorProperties.containsKey(CssColorProperty.BACKGROUND_COLOR);
 	}
 
 	public boolean isBorderColorSet() {

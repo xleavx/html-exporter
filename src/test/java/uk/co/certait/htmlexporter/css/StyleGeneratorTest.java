@@ -15,6 +15,18 @@
  */
 package uk.co.certait.htmlexporter.css;
 
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.awt.Color;
+
 public class StyleGeneratorTest {
+  @Test
+  public void testWebColor() {
+    Assert.assertEquals(StyleGenerator.webColor("#0000ff"), Color.BLUE);
+    Assert.assertEquals(StyleGenerator.webColor("blue"), Color.BLUE);
+    Assert.assertEquals(StyleGenerator.webColor("Blue"), Color.BLUE);
+    Assert.assertEquals(StyleGenerator.webColor("rgb(166, 229, 168)"), new Color(166, 229, 168));
+  }
 
 }
