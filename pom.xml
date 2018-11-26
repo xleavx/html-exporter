@@ -10,7 +10,7 @@
 		<version>7</version> </parent> -->
 
 	<properties>
-		<S3_BUCKET_NAME>alanhay-maven-repository</S3_BUCKET_NAME>
+		<!--<S3_BUCKET_NAME>alanhay-maven-repository</S3_BUCKET_NAME>-->
 		<java.version>8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -29,13 +29,22 @@
 		</license>
 	</licenses>
 
+  <!--
 	<scm>
 		<connection>scm:git@github.com:alanhay/html-exporter.git</connection>
 		<developerConnection>scm:git@github.com:alanhay/html-exporter.git</developerConnection>
 		<url>git@github.com:alanhay/html-exporter.git</url>
 	</scm>
+-->
+  <scm>
+    <connection>scm:git:ssh://git@bitbucket.bftcom.com:7998/ob/html-exporter.git</connection>
+    <developerConnection>scm:git:ssh://git@bitbucket.bftcom.com:7998/ob/html-exporter.git</developerConnection>
+    <url>https://bitbucket.bftcom.com/projects/OB/repos/osbcp-css-parser</url>
+    <tag>HEAD</tag>
+  </scm>
 
-	<developers>
+
+  <developers>
 		<developer>
 			<name>Alan Hay</name>
 			<organization>Certa IT Solutions</organization>
@@ -98,7 +107,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
+				<!--<version>2.5.1</version>-->
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
@@ -128,7 +137,8 @@
 						</goals>
 						<!-- Prevents errors stopping build in java 8 -->
 			            <configuration>
-			                <additionalparam>-Xdoclint:none</additionalparam>
+                          <additionalOptions>-Xdoclint:none</additionalOptions>
+			                <!--<additionalparam>-Xdoclint:none</additionalparam>-->
 			            </configuration>
 					</execution>
 				</executions>
@@ -157,6 +167,7 @@
 	</build>
 
 	<repositories>
+      <!--
 		<repository>
 			<snapshots>
 				<enabled>false</enabled>
@@ -187,9 +198,11 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
+		-->
 	</repositories>
 
 	<distributionManagement>
+      <!--
 		<repository>
 			<id>maven-s3-release-repo</id>
 			<name>S3 Release Repository</name>
@@ -200,6 +213,11 @@
 			<name>S3 Snapshot Repository</name>
 			<url>s3://${S3_BUCKET_NAME}/snapshot</url>
 		</snapshotRepository>
+		-->
+      <repository>
+        <id>BFT_REL</id>
+        <url>http://jin-server.bft.local:8097/nexus/content/repositories/BFT_REL</url>
+      </repository>
 	</distributionManagement>
 
 </project>
