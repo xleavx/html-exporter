@@ -32,6 +32,7 @@ public class Style {
 	protected static final String BOLD_FONT_STYLE = "bold";
 	protected static final String ITALIC_FONT_STYLE = "italic";
 	protected static final String TEXT_DECORATION_UNDERLINE = "underline";
+	protected static final String TEXT_DECORATION_LINE_THROUGH = "line-through";
 	protected static final String LEFT_ALIGN = "left";
 	protected static final String RIGHT_ALIGN = "right";
 	protected static final String CENTER_ALIGN = "center";
@@ -134,7 +135,18 @@ public class Style {
 	}
 
 	public boolean isTextUnderlined() {
-		return TEXT_DECORATION_UNDERLINE.equals(stringProperties.get(CssStringProperty.TEXT_DECORATION));
+		return isTextDecorationStyle(TEXT_DECORATION_UNDERLINE);
+	}
+
+	public boolean isTextLineThrough() {
+		return isTextDecorationStyle(TEXT_DECORATION_LINE_THROUGH);
+	}
+
+	public boolean isTextDecorationStyle(String textDecorationStyle) {
+		// sometimes comes "underline solid rgb(0, 0, 0)"
+		//return textDecorationStyle.equals(stringProperties.get(CssStringProperty.TEXT_DECORATION));
+		String value = stringProperties.get(CssStringProperty.TEXT_DECORATION);
+		return value != null && value.indexOf(textDecorationStyle) >= 0;
 	}
 
 	public boolean isHorizontallyAlignedLeft() {

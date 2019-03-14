@@ -156,6 +156,8 @@ public class ExcelStyleGenerator {
 
 		if (style.isTextUnderlined()) {
 			font.setUnderline(Font.U_SINGLE);
+		} else if (style.isTextLineThrough()) {
+			font.setStrikeout(true);
 		}
 
 		return font;

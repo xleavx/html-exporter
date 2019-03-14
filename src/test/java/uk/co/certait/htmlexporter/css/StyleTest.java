@@ -16,6 +16,7 @@
 package uk.co.certait.htmlexporter.css;
 
 import java.awt.Color;
+import java.util.Arrays;
 
 import junit.framework.Assert;
 
@@ -113,10 +114,22 @@ public class StyleTest {
 	public void testIsTextUnderlined() {
 		Style style = new Style();
 		Assert.assertFalse(style.isTextUnderlined());
+		for (String v: Arrays.asList(Style.TEXT_DECORATION_UNDERLINE, "underline solid rgb(0, 0, 0)")) {
+			style = new Style();
+			style.addProperty(CssStringProperty.TEXT_DECORATION, v);
+			Assert.assertTrue(style.isTextUnderlined());
+		}
+	}
 
-		style.addProperty(CssStringProperty.TEXT_DECORATION, Style.TEXT_DECORATION_UNDERLINE);
-
-		Assert.assertTrue(style.isTextUnderlined());
+	@Test
+	public void testIsTextLineThrough() {
+		Style style = new Style();
+		Assert.assertFalse(style.isTextLineThrough());
+		for (String v: Arrays.asList(Style.TEXT_DECORATION_LINE_THROUGH, "line-through solid rgb(0, 0, 0)")) {
+			style = new Style();
+			style.addProperty(CssStringProperty.TEXT_DECORATION, v);
+			Assert.assertTrue(style.isTextLineThrough());
+		}
 	}
 
 	@Test
